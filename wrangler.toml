@@ -1,0 +1,9 @@
+name = "hottublaunch"
+compatibility_date = "2026-06-01"
+pages_build_output_dir = "."
+
+# Account: Start Scale Automate (same as Increase Roas)
+# CLOUDFLARE_ACCOUNT_ID=a3f549867f040e13df33e5bd18f785f4
+
+[vars]
+SITE_URL = "https://hottublaunch.com"

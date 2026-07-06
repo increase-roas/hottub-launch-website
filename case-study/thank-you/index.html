@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're Booked — Online Presence Audit | Hot Tub Launch</title>
+<!--
+  CASE STUDY THANK YOU — after booking on case-study/booking.html
+  Same layout as profit-playbook/pre-call-lite.html, copy tuned for the audit funnel.
+
+  TO CUSTOMIZE:
+   • Inject the booked time into EVENT.startISO from your GHL merge fields.
+   • Set GHL calendar post-booking redirect → /case-study/thank-you/
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF; --paper:#FAF9F6; --block:#E4DFDB; --ink:#0E0C0B;
+    --gray:#403B36; --muted:#857E76; --muted-dark:#A79F97;
+    --red:#CE1126; --red-dark:#A80E1F; --line:#E7E1D8;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--gray);font-family:'Manrope',system-ui,sans-serif;
+    font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;
+    min-height:100vh;display:flex;flex-direction:column}
+  a{color:inherit;text-decoration:none}
+  h1{font-family:'Montserrat',sans-serif;text-transform:uppercase;line-height:1.04;font-weight:900;letter-spacing:-.015em;color:var(--ink)}
+  .red{color:var(--red)}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:'Montserrat';font-weight:800;
+    font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+  .eyebrow::before{content:"";width:3px;height:1.05em;background:var(--red);flex:none}
+
+  .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:2.5rem 1.2rem}
+  .card{width:100%;max-width:540px;background:var(--white);border:1px solid var(--line);border-radius:16px;
+    padding:clamp(2rem,5vw,3rem);text-align:center;box-shadow:0 24px 60px rgba(20,15,10,.07)}
+
+  .logo{display:inline-flex;align-items:center;gap:.55rem;margin-bottom:1.8rem}
+  .logo .mk{width:30px;height:30px;flex:none}
+  .logo .w1{font-family:'Montserrat';font-weight:800;font-size:.92rem;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);line-height:.85;display:block}
+  .logo .w2{font-family:'Montserrat';font-weight:700;font-size:.58rem;letter-spacing:.4em;color:var(--red);text-transform:uppercase;display:block;margin-top:2px}
+
+  .check{width:60px;height:60px;margin:0 auto 1.3rem}
+  h1{font-size:clamp(1.8rem,5.5vw,2.5rem);margin-bottom:.9rem}
+  .sub{max-width:42ch;margin:0 auto 1.7rem;font-size:1.06rem;color:var(--gray)}
+  .sub b{color:var(--ink)}
+
+  .detail{display:inline-flex;align-items:center;gap:.55rem;background:var(--block);border:1px solid var(--line);
+    border-radius:100px;padding:.55rem 1rem;font-family:'Montserrat';font-weight:800;font-size:.72rem;
+    letter-spacing:.03em;text-transform:uppercase;color:var(--ink);margin-bottom:1.5rem}
+  .detail svg{flex:none;color:var(--red)}
+
+  .btn-cal{display:inline-flex;align-items:center;gap:.6rem;font-family:'Montserrat';font-weight:800;
+    font-size:.82rem;letter-spacing:.04em;text-transform:uppercase;padding:.9em 1.6em;border-radius:7px;
+    border:2px solid var(--ink);background:transparent;color:var(--ink);cursor:pointer;transition:.15s;line-height:1}
+  .btn-cal:hover{background:var(--ink);color:var(--paper)}
+  .btn-cal svg{flex:none}
+
+  .closer{margin-top:1.7rem;padding-top:1.4rem;border-top:1px solid var(--line);
+    font-family:'Montserrat';font-weight:800;font-size:.9rem;text-transform:uppercase;letter-spacing:.02em;color:var(--ink)}
+  .closer .red{color:var(--red)}
+
+  footer{text-align:center;padding:1.8rem 1.2rem 2.2rem}
+  .foot-legal{color:var(--muted-dark);font-size:.72rem;max-width:64ch;margin:0 auto;line-height:1.6}
+
+  :focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:3px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<main class="stage">
+  <div class="card">
+    <a class="logo" href="/">
+      <svg class="mk" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="37" rx="17" ry="3.4" stroke="#0E0C0B" stroke-width="1.6"/><ellipse cx="24" cy="37" rx="10.5" ry="2" stroke="#0E0C0B" stroke-width="1.4" opacity=".6"/><circle cx="24" cy="21" r="13" stroke="#0E0C0B" stroke-width="1.8"/><path d="M20 34 C18 24 22 15 31 8 C27 17 27 26 28 34 Z" fill="#CE1126"/></svg>
+      <span><span class="w1">Hot Tub</span><span class="w2">Launch</span></span>
+    </a>
+
+    <svg class="check" viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.4l3.3 3.3L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+    <span class="eyebrow" style="margin-bottom:.9rem">Audit confirmed</span>
+    <h1>You're booked.</h1>
+    <p class="sub"><b>Your audit call details are in your email.</b> Watch your inbox for the confirmation, calendar invite, and anything we need you to have ready before we walk your store live.</p>
+
+    <div class="detail">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 2.5v4M16 2.5v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      Free online presence audit
+    </div>
+
+    <div>
+      <a class="btn-cal" id="gcalBtn" href="#" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 2.5v4M16 2.5v4M12 12.5v5M9.5 15h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Add to Google Calendar
+      </a>
+    </div>
+
+    <p class="closer">That's it — <span class="red">we'll see you on the audit.</span></p>
+  </div>
+</main>
+
+<footer>
+  <p class="foot-legal">This website is not endorsed by or affiliated with Facebook, Google, or YouTube in any way. Individual results may not be typical. © 2026 Hot Tub Launch. All rights reserved.</p>
+</footer>
+
+<script>
+  (function(){
+    var EVENT = {
+      title: "Hot Tub Launch — Free Online Presence Audit",
+      details: "Your booked audit call with Hot Tub Launch. We'll walk your online showroom live and show you where buyers are leaking. Check your email for join details.",
+      location: "Phone / video — details in your confirmation email",
+      startISO: "",
+      durationMins: 30
+    };
+
+    function pad(n){ return (n < 10 ? '0' : '') + n; }
+    function toGCal(d){
+      return d.getUTCFullYear() + pad(d.getUTCMonth()+1) + pad(d.getUTCDate()) + 'T'
+           + pad(d.getUTCHours()) + pad(d.getUTCMinutes()) + pad(d.getUTCSeconds()) + 'Z';
+    }
+
+    var url = "https://calendar.google.com/calendar/render?action=TEMPLATE"
+            + "&text=" + encodeURIComponent(EVENT.title)
+            + "&details=" + encodeURIComponent(EVENT.details)
+            + "&location=" + encodeURIComponent(EVENT.location);
+
+    var start = EVENT.startISO ? new Date(EVENT.startISO) : null;
+    if (start && !isNaN(start.getTime())){
+      var end = new Date(start.getTime() + EVENT.durationMins * 60000);
+      url += "&dates=" + toGCal(start) + "/" + toGCal(end);
+    }
+
+    var btn = document.getElementById('gcalBtn');
+    if (btn) btn.href = url;
+  })();
+</script>
+
+</body>
+</html>

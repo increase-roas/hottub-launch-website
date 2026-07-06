@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Last Step — Book Your Free Online Presence Audit</title>
+<!--
+  BOOKING / SCHEDULER  (funnel step 2 of 3: OPT-IN → CALENDAR → PRE-CALL)
+  Structure mirrors the proven Gym Launch scheduler page, rebuilt in Hot Tub Launch brand.
+  Sections: confirmation header → calendar embed → "most owners stop here" → the fork →
+  "not a someday plan" → why book now (the honest audit offer) → REAL-ONLY proof scaffold → footer.
+
+  TO CUSTOMIZE / WIRE:
+   • CALENDAR: paste your GHL (or Calendly) embed into #calendar-slot. On booking, redirect → pre-call-lite.html.
+   • PROOF: the proof grid is a REAL-ONLY scaffold. Drop in real screenshots + real quotes from
+     Paradise Spas / The Hot Tub Store, then delete the .is-placeholder class. Never fabricate results.
+     If you have no proof to show yet, leave the whole <section id="proof"> commented out.
+   • Trust number: replace [[ ADD # ]].
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ---- shared design tokens (matches playbook-optin.html for a seamless funnel) ---- */
+  :root{
+    --white:#FFFFFF; --paper:#FAF9F6; --band:#F1EEE9; --ink:#0E0C0B; --ink-2:#1A1613;
+    --gray:#403B36; --muted:#857E76; --muted-dark:#A79F97;
+    --red:#CE1126; --red-dark:#A80E1F; --line:#E7E1D8; --line-dark:rgba(250,249,246,.14);
+    --wrap:680px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--gray);font-family:'Manrope',system-ui,sans-serif;
+    font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:'Montserrat',sans-serif;text-transform:uppercase;line-height:1.05;font-weight:900;letter-spacing:-.01em;color:var(--ink)}
+  .red{color:var(--red)}
+  .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:1.2rem}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:'Montserrat';font-weight:800;
+    font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+  .eyebrow::before{content:"";width:3px;height:1.05em;background:var(--red);flex:none}
+  .eyebrow.on-ink{color:var(--paper)}
+
+  .btn{display:flex;align-items:center;justify-content:center;gap:.55rem;width:100%;cursor:pointer;
+    font-family:'Montserrat';font-weight:900;font-size:1.12rem;letter-spacing:.02em;text-transform:uppercase;
+    padding:1.05em 1.3em;border-radius:8px;border:0;background:var(--red);color:#fff;transition:.15s;
+    box-shadow:0 12px 28px rgba(206,17,38,.28);line-height:1.15}
+  .btn:hover{background:var(--red-dark);transform:translateY(-2px)}
+  .btn svg{flex:none}
+
+  /* ---------- TOP BAR + FUNNEL PROGRESS ---------- */
+  .topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+  .topbar .row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.95rem}
+  .logo{display:inline-flex;align-items:center;gap:.55rem}
+  .logo .mk{width:32px;height:32px;flex:none}
+  .logo .w1{font-family:'Montserrat';font-weight:800;font-size:.98rem;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);line-height:.85;display:block}
+  .logo .w2{font-family:'Montserrat';font-weight:700;font-size:.6rem;letter-spacing:.4em;color:var(--red);text-transform:uppercase;display:block;margin-top:2px}
+  .steps{display:flex;align-items:center;gap:.5rem}
+  .step{display:flex;align-items:center;gap:.45rem;font-family:'Montserrat';font-weight:800;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark)}
+  .step .b{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--muted-dark);flex:none}
+  .step.done .b{background:var(--ink);border-color:var(--ink);color:#fff}
+  .step.active{color:var(--ink)}
+  .step.active .b{background:var(--red);border-color:var(--red);color:#fff}
+  .step .lbl{display:none}
+  .step .bar{width:20px;height:2px;background:var(--line);flex:none}
+  @media (min-width:720px){.step .lbl{display:inline}.step .bar{width:34px}}
+
+  /* ---------- CONFIRMATION HEADER ---------- */
+  .head{text-align:center;padding:2.4rem 0 1.6rem}
+  .head .conf{display:inline-flex;align-items:center;gap:.5rem;background:var(--band);border:1px solid var(--line);
+    border-radius:100px;padding:.5rem .95rem;font-family:'Montserrat';font-weight:800;font-size:.72rem;
+    letter-spacing:.03em;text-transform:uppercase;color:var(--ink);margin-bottom:1.4rem}
+  .head .conf svg{flex:none}
+  .head h1{font-size:clamp(1.7rem,5vw,2.5rem);margin-bottom:1rem}
+  .head .sub{max-width:52ch;margin:0 auto;font-size:1.06rem;color:var(--gray)}
+  .head .sub b{color:var(--ink)}
+
+  /* ---------- CALENDAR BAND (ink) ---------- */
+  .cal{background:var(--ink);color:var(--paper);padding:2.2rem 0 2.6rem}
+  .cal .lead{text-align:center;max-width:56ch;margin:.8rem auto 0;color:var(--muted-dark);font-size:1.02rem}
+  .cal h2{color:var(--paper);text-align:center;font-size:clamp(1.4rem,3.6vw,2rem);margin-top:.7rem}
+  .cal .center{text-align:center}
+  .cal-card{background:var(--white);border-radius:12px;margin-top:1.8rem;overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.34)}
+  #calendar-slot{min-height:520px;width:100%;border:0;display:block}
+  /* styled fallback shown until you paste your real GHL/Calendly embed */
+  .cal-fallback{min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;
+    text-align:center;padding:2.6rem 1.4rem;color:var(--muted)}
+  .cal-fallback .ic{width:52px;height:52px;color:var(--red)}
+  .cal-fallback b{font-family:'Montserrat';font-weight:800;font-size:1rem;text-transform:uppercase;color:var(--ink);letter-spacing:.01em}
+  .cal-fallback span{font-size:.9rem;max-width:40ch}
+  .cal-note{margin-top:1.3rem;display:grid;gap:.7rem}
+  .cal-note .n{display:flex;gap:.65rem;align-items:flex-start;color:var(--paper);font-size:1rem;line-height:1.45}
+  .cal-note .n svg{flex:none;margin-top:.15em;color:var(--red)}
+  @media (min-width:640px){.cal-note{grid-template-columns:1fr 1fr 1fr;gap:1.1rem}.cal-note .n{flex-direction:column}}
+
+  /* ---------- GENERIC SECTIONS ---------- */
+  .sec{padding:clamp(2.4rem,5.5vw,3.6rem) 0}
+  .sec--band{background:var(--band);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sec h2{font-size:clamp(1.55rem,4vw,2.2rem);margin-bottom:1rem}
+  .prose p{margin-bottom:.55rem;font-size:1.12rem;color:var(--gray);max-width:60ch}
+  .prose p.tight{margin-bottom:.15rem}
+  .prose p b{color:var(--ink)}
+  .prose .gap{height:1.1rem}
+
+  /* transition band */
+  .transition{background:var(--ink);color:var(--paper);text-align:center;padding:2.1rem 0}
+  .transition p{font-family:'Montserrat';font-weight:800;text-transform:uppercase;letter-spacing:.02em;
+    font-size:clamp(1.15rem,3vw,1.55rem);color:var(--paper);max-width:24ch;margin:0 auto;line-height:1.2}
+  .transition p .red{color:#F0475C}
+
+  /* fork */
+  .fork{display:grid;gap:1rem;margin-top:1.4rem}
+  .fork .opt{border:1px solid var(--line);border-radius:10px;padding:1.4rem 1.5rem;background:var(--white)}
+  .fork .opt .k{font-family:'Montserrat';font-weight:800;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+  .fork .opt p{font-size:1.06rem;color:var(--gray);margin:0}
+  .fork .opt.win{border-color:var(--red);border-left-width:4px}
+  .fork .opt.win .k{color:var(--red)}
+  .fork .opt.win p{color:var(--ink);font-weight:600}
+  @media (min-width:640px){.fork{grid-template-columns:1fr 1fr;align-items:stretch}}
+
+  /* checklist */
+  .clist{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin:1.3rem 0 1.2rem}
+  .clist li{display:flex;gap:.7rem;align-items:flex-start;font-size:1.1rem;color:var(--gray)}
+  .clist li svg{flex:none;margin-top:.15em}
+  .clist li b{color:var(--ink)}
+  .kicker{font-family:'Montserrat';font-weight:800;font-size:1.1rem;text-transform:uppercase;color:var(--ink);letter-spacing:.01em}
+  .kicker .red{color:var(--red)}
+
+  .cta-wrap{max-width:520px;margin:1.9rem auto 0}
+  .cta-sub{text-align:center;font-family:'Montserrat';font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:.9rem}
+
+  /* ---------- PROOF (REAL-ONLY SCAFFOLD) ---------- */
+  .proof h2{text-align:center}
+  .proof .cen{text-align:center;color:var(--gray);max-width:50ch;margin:.4rem auto 1.7rem;font-size:1.04rem}
+  .proof-grid{display:grid;gap:1.1rem}
+  @media (min-width:720px){.proof-grid{grid-template-columns:repeat(3,1fr)}}
+  .proof-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:1.4rem;display:flex;flex-direction:column;gap:.9rem}
+  .proof-card .shot{aspect-ratio:4/3;border-radius:8px;background:var(--band);overflow:hidden;display:flex;align-items:center;justify-content:center}
+  .proof-card .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .proof-card .quote{font-size:1rem;color:var(--gray);line-height:1.5}
+  .proof-card .who{font-family:'Montserrat';font-weight:800;font-size:.78rem;text-transform:uppercase;letter-spacing:.02em;color:var(--ink)}
+  .proof-card .who span{display:block;font-weight:600;font-size:.72rem;letter-spacing:.04em;color:var(--muted);margin-top:2px}
+  /* placeholder styling — visible ONLY while unpopulated. Remove .is-placeholder when you add real proof. */
+  .proof-card.is-placeholder{border-style:dashed;border-color:var(--muted-dark);background:transparent}
+  .proof-card.is-placeholder .shot{background:repeating-linear-gradient(135deg,var(--band),var(--band) 10px,#ece7df 10px,#ece7df 20px)}
+  .proof-card.is-placeholder .ph-label{font-family:'Montserrat';font-weight:800;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-dark);text-align:center;padding:0 1rem}
+  .proof-card.is-placeholder .quote,.proof-card.is-placeholder .who{color:var(--muted-dark)}
+  .proof-note{margin-top:1.4rem;border-left:3px solid var(--red);padding:.5rem 0 .5rem 1.1rem;color:var(--muted);font-size:.9rem;max-width:60ch;margin-inline:auto}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:#fff;padding:2.6rem 0 2.8rem;text-align:center}
+  footer .logo{justify-content:center}
+  footer .logo .w1{color:#fff}
+  .foot-legal{color:rgba(255,255,255,.42);font-size:.74rem;max-width:66ch;margin:1.4rem auto 0;line-height:1.65}
+
+  :focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:3px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR + PROGRESS -->
+<header class="topbar">
+  <div class="wrap row">
+    <a class="logo" href="/">
+      <svg class="mk" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="37" rx="17" ry="3.4" stroke="#0E0C0B" stroke-width="1.6"/><ellipse cx="24" cy="37" rx="10.5" ry="2" stroke="#0E0C0B" stroke-width="1.4" opacity=".6"/><circle cx="24" cy="21" r="13" stroke="#0E0C0B" stroke-width="1.8"/><path d="M20 34 C18 24 22 15 31 8 C27 17 27 26 28 34 Z" fill="#CE1126"/></svg>
+      <span><span class="w1">Hot Tub</span><span class="w2">Launch</span></span>
+    </a>
+    <div class="steps" aria-label="Funnel progress: step 2 of 3">
+      <div class="step done"><span class="b">✓</span><span class="lbl">Playbook</span></div>
+      <span class="bar"></span>
+      <div class="step active"><span class="b">2</span><span class="lbl">Book call</span></div>
+      <span class="bar"></span>
+      <div class="step"><span class="b">3</span><span class="lbl">You're set</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- CONFIRMATION HEADER -->
+  <section class="head">
+    <div class="wrap">
+      <div class="conf">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Your playbook is on the way
+      </div>
+      <h1>See exactly where your store is losing buyers — <span class="red">before you spend another dollar</span></h1>
+      <p class="sub">The playbook lands in your inbox in the next few minutes. <b>But the fastest win isn't in a PDF — it's on the call below.</b> Pick a time and we'll walk your online showroom together and show you every leak, live.</p>
+    </div>
+  </section>
+
+  <!-- CALENDAR BAND -->
+  <section class="cal">
+    <div class="wrap">
+      <div class="center"><span class="eyebrow on-ink">Last step · Pick a time</span></div>
+      <h2>Book your free Online Presence Audit</h2>
+      <p class="lead">One call. We walk your entire online showroom — speed, follow-up, message, proof — the way a ready buyer sees it, and name every leak with the real number behind it.</p>
+
+      <div class="cal-card">
+        <!-- ▼▼▼ PASTE YOUR GHL / CALENDLY EMBED HERE (replace the whole .cal-fallback block) ▼▼▼
+             Example iframe:
+             <iframe id="calendar-slot" src="https://api.leadconnectorhq.com/widget/booking/XXXX" scrolling="no"></iframe>
+             On successful booking, GHL can redirect to pre-call-lite.html (set in the calendar's redirect settings). -->
+        <div class="cal-fallback" id="calendar-slot">
+          <svg class="ic" viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 2.5v4M16 2.5v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 13l2.5 2.5L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Your booking calendar loads here</b>
+          <span>Paste your GHL or Calendly embed into <code>#calendar-slot</code>, then set the post-booking redirect to <code>pre-call-lite.html</code>.</span>
+        </div>
+        <!-- ▲▲▲ END embed slot ▲▲▲ -->
+      </div>
+
+      <div class="cal-note">
+        <div class="n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>We walk your online showroom together — the way a ready buyer sees it.</span></div>
+        <div class="n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every leak named, with the real number behind it — load time, missed follow-ups, buried reviews.</span></div>
+        <div class="n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You leave with the plan to seal it — whether or not we ever work together.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSITION -->
+  <div class="transition">
+    <div class="wrap"><p>Here's the part <span class="red">nobody tells you</span></p></div>
+  </div>
+
+  <!-- MOST OWNERS STOP HERE -->
+  <section class="sec">
+    <div class="wrap prose">
+      <span class="eyebrow" style="margin-bottom:1rem">Most owners stop here</span>
+      <h2>You've got the playbook. Most owners stop right there.</h2>
+      <p>Grabbing it already puts you ahead of most. But here's what usually happens next.</p>
+      <div class="gap"></div>
+      <p class="tight">You download it. You mean to read it.</p>
+      <p class="tight">Maybe you skim the first few pages.</p>
+      <p class="tight">Then Monday hits — the floor, the phones, the showroom — and it goes in a folder.</p>
+      <div class="gap"></div>
+      <p class="tight">Same slow site. Same missed calls. Same quiet weeks.</p>
+      <p class="tight">A year passes. The bucket still leaks.</p>
+      <div class="gap"></div>
+      <p>The buyers you earned this year? Most of them bought somewhere easier. <b>And you never saw it happen — you just saw a slower month.</b></p>
+    </div>
+  </section>
+
+  <!-- THE FORK -->
+  <section class="sec sec--band">
+    <div class="wrap">
+      <span class="eyebrow" style="margin-bottom:1rem">The real question</span>
+      <h2>Which owner do you want to be a year from now?</h2>
+      <div class="fork">
+        <div class="opt">
+          <div class="k">Owner A</div>
+          <p>Has the playbook. Runs a store that still leaks — same site, same follow-up, same guessing on where the sales went.</p>
+        </div>
+        <div class="opt win">
+          <div class="k">Owner B</div>
+          <p>Sealed the leaks. Finally keeps the buyers they were already paying to reach — and the month stops swinging with the season.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOT A SOMEDAY PLAN -->
+  <section class="sec">
+    <div class="wrap prose">
+      <p style="margin-bottom:1rem">The playbook isn't a "someday" plan. It's a real way to:</p>
+      <ul class="clist">
+        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Seal the leaks that quietly cap your sales</b> — starting with the biggest one.</span></li>
+        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Turn the visitors you already get</b> into booked wet tests instead of bounces.</span></li>
+        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Make the traffic you're already paying for finally stay</b> — because there's nowhere left for it to leak out.</span></li>
+      </ul>
+      <p class="kicker">Not in five years. <span class="red">This season.</span></p>
+    </div>
+  </section>
+
+  <!-- WHY BOOK NOW — THE HONEST OFFER -->
+  <section class="sec sec--band">
+    <div class="wrap prose">
+      <span class="eyebrow" style="margin-bottom:1rem">Why book the call now</span>
+      <h2>Because you're still reading.</h2>
+      <p>You grabbed the playbook. You scrolled this far. That tells me you're not looking for one more thing to file away — you're looking for the fix.</p>
+      <div class="gap"></div>
+      <p>So here it is. Get on a call and we run the full audit on your store, live. Every leak, named, with the number behind it. You'll see exactly what's costing you buyers and exactly what to seal first.</p>
+      <div class="gap"></div>
+      <p><b>It's free. There's no pitch until you ask for one.</b></p>
+      <div class="gap"></div>
+      <p>And the first thing we'll probably tell you is the thing no other agency has the nerve to say: <b>don't advertise yet.</b> Seal the store first. Then every dollar you spend actually stays.</p>
+
+      <div class="cta-wrap"><a class="btn" href="#top">Book My Free Audit
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M1 6h15m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.2"/></svg></a></div>
+      <p class="cta-sub">Takes 60 seconds · One store per market</p>
+    </div>
+  </section>
+
+  <!--
+    ══════════════════════════════════════════════════════════════════════════
+    PROOF — REAL RESULTS ONLY.  This is the one line that protects the brand.
+    • Populate each card with a REAL screenshot (into .shot) and a REAL quote,
+      then delete "is-placeholder" from that card's class.
+    • Real clients to feature: Paradise Spas (Minot, ND) · The Hot Tub Store (MI).
+    • NEVER fabricate names, numbers, dashboards, or quotes. Fake results violate
+      the FTC and detonate the "built by a real business owner" claim.
+    • No proof to show yet? Comment out this entire <section id="proof"> block —
+      the page reads clean without it.
+    ══════════════════════════════════════════════════════════════════════════
+  -->
+  <section class="sec proof" id="proof">
+    <div class="wrap">
+      <span class="eyebrow" style="display:flex;justify-content:center;margin-bottom:1rem">Real stores · real results</span>
+      <h2>Stores that sealed the leaks first</h2>
+      <p class="cen">A few of the independent stores we've walked through the same audit you're about to book.</p>
+
+      <div class="proof-grid">
+        <div class="proof-card is-placeholder">
+          <div class="shot"><span class="ph-label">Drop real screenshot here</span></div>
+          <p class="quote">Add a real, verbatim quote from this owner. Never paraphrase into a claim they didn't make.</p>
+          <div class="who">Store Owner Name<span>Paradise Spas · Minot, ND</span></div>
+        </div>
+        <div class="proof-card is-placeholder">
+          <div class="shot"><span class="ph-label">Drop real screenshot here</span></div>
+          <p class="quote">Add a real, verbatim quote from this owner. Never paraphrase into a claim they didn't make.</p>
+          <div class="who">Store Owner Name<span>The Hot Tub Store · MI</span></div>
+        </div>
+        <div class="proof-card is-placeholder">
+          <div class="shot"><span class="ph-label">Drop real screenshot here</span></div>
+          <p class="quote">Add a real, verbatim quote from this owner. Never paraphrase into a claim they didn't make.</p>
+          <div class="who">Store Owner Name<span>Store · City, ST</span></div>
+        </div>
+      </div>
+
+      <p class="proof-note">Placeholder cards are shown only until you add real proof. Replace the screenshots and quotes with genuine results, then remove the placeholder styling — or hide this section entirely until you have proof to show.</p>
+
+      <div class="cta-wrap"><a class="btn" href="#top">Book My Free Audit
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M1 6h15m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.2"/></svg></a></div>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <a class="logo" href="/">
+      <svg class="mk" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="37" rx="17" ry="3.4" stroke="#FAF9F6" stroke-width="1.6"/><ellipse cx="24" cy="37" rx="10.5" ry="2" stroke="#FAF9F6" stroke-width="1.4" opacity=".5"/><circle cx="24" cy="21" r="13" stroke="#FAF9F6" stroke-width="1.8"/><path d="M20 34 C18 24 22 15 31 8 C27 17 27 26 28 34 Z" fill="#CE1126"/></svg>
+      <span><span class="w1">Hot Tub</span><span class="w2">Launch</span></span>
+    </a>
+    <p class="foot-legal">This website is not endorsed by or affiliated with Facebook, Google, or YouTube in any way. Individual results presented here may not be typical. Your background, effort, and execution affect outcomes, and nothing here is a guarantee of any specific result. © 2026 Hot Tub Launch. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

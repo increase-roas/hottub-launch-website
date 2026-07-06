@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book Your Free Store Audit — Hot Tub Launch Masterclass</title>
+<!--
+  WEBINAR BOOKING — after webinar-confirmation.html (masterclass registrants who want the audit early)
+  Same scheduler structure as profit-playbook/booking-calendar.html, copy tuned for webinar traffic.
+
+  TO CUSTOMIZE / WIRE:
+   • CALENDAR: paste your GHL embed into #calendar-slot.
+   • On successful booking, set GHL redirect → /webinar-registration/thank-you/
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#FFFFFF; --paper:#FAF9F6; --band:#F1EEE9; --ink:#0E0C0B;
+    --gray:#403B36; --muted:#857E76; --muted-dark:#A79F97;
+    --red:#CE1126; --red-dark:#A80E1F; --line:#E7E1D8; --line-dark:rgba(250,249,246,.14);
+    --wrap:680px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--gray);font-family:'Manrope',system-ui,sans-serif;
+    font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  h1,h2{font-family:'Montserrat',sans-serif;text-transform:uppercase;line-height:1.05;font-weight:900;letter-spacing:-.01em;color:var(--ink)}
+  .red{color:var(--red)}
+  .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:1.2rem}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:'Montserrat';font-weight:800;
+    font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+  .eyebrow::before{content:"";width:3px;height:1.05em;background:var(--red);flex:none}
+  .eyebrow.on-ink{color:var(--paper)}
+
+  .topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+  .topbar .row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.95rem}
+  .logo{display:inline-flex;align-items:center;gap:.55rem}
+  .logo .mk{width:32px;height:32px;flex:none}
+  .logo .w1{font-family:'Montserrat';font-weight:800;font-size:.98rem;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);line-height:.85;display:block}
+  .logo .w2{font-family:'Montserrat';font-weight:700;font-size:.6rem;letter-spacing:.4em;color:var(--red);text-transform:uppercase;display:block;margin-top:2px}
+  .steps{display:flex;align-items:center;gap:.5rem}
+  .step{display:flex;align-items:center;gap:.45rem;font-family:'Montserrat';font-weight:800;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark)}
+  .step .b{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--muted-dark);flex:none}
+  .step.done .b{background:var(--ink);border-color:var(--ink);color:#fff}
+  .step.active{color:var(--ink)}
+  .step.active .b{background:var(--red);border-color:var(--red);color:#fff}
+  .step .lbl{display:none}
+  .step .bar{width:20px;height:2px;background:var(--line);flex:none}
+  @media (min-width:720px){.step .lbl{display:inline}.step .bar{width:34px}}
+
+  .head{text-align:center;padding:2.4rem 0 1.6rem}
+  .head .conf{display:inline-flex;align-items:center;gap:.5rem;background:var(--band);border:1px solid var(--line);
+    border-radius:100px;padding:.5rem .95rem;font-family:'Montserrat';font-weight:800;font-size:.72rem;
+    letter-spacing:.03em;text-transform:uppercase;color:var(--ink);margin-bottom:1.4rem}
+  .head .conf svg{flex:none}
+  .head h1{font-size:clamp(1.7rem,5vw,2.5rem);margin-bottom:1rem}
+  .head .sub{max-width:52ch;margin:0 auto;font-size:1.06rem;color:var(--gray)}
+  .head .sub b{color:var(--ink)}
+
+  .cal{background:var(--ink);color:var(--paper);padding:2.2rem 0 2.6rem}
+  .cal .lead{text-align:center;max-width:56ch;margin:.8rem auto 0;color:var(--muted-dark);font-size:1.02rem}
+  .cal h2{color:var(--paper);text-align:center;font-size:clamp(1.4rem,3.6vw,2rem);margin-top:.7rem}
+  .cal .center{text-align:center}
+  .cal-card{background:var(--white);border-radius:12px;margin-top:1.8rem;overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.34)}
+  #calendar-slot{min-height:520px;width:100%;border:0;display:block}
+  .cal-fallback{min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;
+    text-align:center;padding:2.6rem 1.4rem;color:var(--muted)}
+  .cal-fallback .ic{width:52px;height:52px;color:var(--red)}
+  .cal-fallback b{font-family:'Montserrat';font-weight:800;font-size:1rem;text-transform:uppercase;color:var(--ink);letter-spacing:.01em}
+  .cal-fallback span{font-size:.9rem;max-width:40ch}
+  .cal-note{margin-top:1.3rem;display:grid;gap:.7rem}
+  .cal-note .n{display:flex;gap:.65rem;align-items:flex-start;color:var(--paper);font-size:1rem;line-height:1.45}
+  .cal-note .n svg{flex:none;margin-top:.15em;color:var(--red)}
+  @media (min-width:640px){.cal-note{grid-template-columns:1fr 1fr 1fr;gap:1.1rem}.cal-note .n{flex-direction:column}}
+
+  footer{background:var(--ink);color:#fff;padding:2.6rem 0 2.8rem;text-align:center}
+  footer .logo{justify-content:center}
+  footer .logo .w1{color:#fff}
+  .foot-legal{color:rgba(255,255,255,.42);font-size:.74rem;max-width:66ch;margin:1.4rem auto 0;line-height:1.65}
+
+  :focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:3px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap row">
+    <a class="logo" href="/">
+      <svg class="mk" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="37" rx="17" ry="3.4" stroke="#0E0C0B" stroke-width="1.6"/><ellipse cx="24" cy="37" rx="10.5" ry="2" stroke="#0E0C0B" stroke-width="1.4" opacity=".6"/><circle cx="24" cy="21" r="13" stroke="#0E0C0B" stroke-width="1.8"/><path d="M20 34 C18 24 22 15 31 8 C27 17 27 26 28 34 Z" fill="#CE1126"/></svg>
+      <span><span class="w1">Hot Tub</span><span class="w2">Launch</span></span>
+    </a>
+    <div class="steps" aria-label="Funnel progress: step 2 of 3">
+      <div class="step done"><span class="b">✓</span><span class="lbl">Masterclass</span></div>
+      <span class="bar"></span>
+      <div class="step active"><span class="b">2</span><span class="lbl">Book audit</span></div>
+      <span class="bar"></span>
+      <div class="step"><span class="b">3</span><span class="lbl">You're set</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="head">
+    <div class="wrap">
+      <div class="conf">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Your masterclass seat is saved
+      </div>
+      <h1>Can't wait for Tuesday? <span class="red">Get your store audit now.</span></h1>
+      <p class="sub">You're registered for the masterclass — check your email for the join link. <b>Pick a time below and we'll walk your online showroom live before the class even starts</b>, leak by leak, the way a ready buyer sees it.</p>
+    </div>
+  </section>
+
+  <section class="cal" id="book">
+    <div class="wrap">
+      <div class="center"><span class="eyebrow on-ink">Last step · Pick a time</span></div>
+      <h2>Book your free store audit</h2>
+      <p class="lead">One call. We walk your entire online showroom — speed, follow-up, message, proof — and name every leak with the real number behind it.</p>
+
+      <div class="cal-card">
+        <!-- ▼▼▼ PASTE YOUR GHL / CALENDLY EMBED HERE (replace the whole .cal-fallback block) ▼▼▼
+             On successful booking, set the calendar's redirect to thank-you/ -->
+        <div class="cal-fallback" id="calendar-slot">
+          <svg class="ic" viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 2.5v4M16 2.5v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 13l2.5 2.5L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Your booking calendar loads here</b>
+          <span>Paste your GHL or Calendly embed into <code>#calendar-slot</code>, then set the post-booking redirect to <code>thank-you/</code> (full URL: <code>/webinar-registration/thank-you/</code>).</span>
+        </div>
+        <!-- ▲▲▲ END embed slot ▲▲▲ -->
+      </div>
+
+      <div class="cal-note">
+        <div class="n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>We walk your online showroom together — the way a ready buyer sees it.</span></div>
+        <div class="n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every leak named, with the real number behind it — load time, missed follow-ups, buried reviews.</span></div>
+        <div class="n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You leave with the plan to seal it — whether or not we ever work together.</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="/">
+      <svg class="mk" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="37" rx="17" ry="3.4" stroke="#FAF9F6" stroke-width="1.6"/><ellipse cx="24" cy="37" rx="10.5" ry="2" stroke="#FAF9F6" stroke-width="1.4" opacity=".5"/><circle cx="24" cy="21" r="13" stroke="#FAF9F6" stroke-width="1.8"/><path d="M20 34 C18 24 22 15 31 8 C27 17 27 26 28 34 Z" fill="#CE1126"/></svg>
+      <span><span class="w1">Hot Tub</span><span class="w2">Launch</span></span>
+    </a>
+    <p class="foot-legal">This website is not endorsed by or affiliated with Facebook, Google, Zoom, or YouTube in any way. Individual results may not be typical and nothing here is a guarantee of any specific result. © 2026 Hot Tub Launch. All rights reserved.</p>
+  </div>
+</footer>
+
+</body>
+</html>

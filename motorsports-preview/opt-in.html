@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Free powersports dealership website audit — see where you're losing sales online">
+<title>Motorsports Launch — Free Website Audit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#E10600;--red-dark:#BB0A00;--red-rgb:225,6,0;
+  --yellow:#FFD700;--black:#0C0C0C;--dark:#161616;
+  --text:#141414;--muted:#565A7C;--gray:#8893A8;
+  --border:#E8EAED;--white:#fff;
+  --red-faint:#FFF0F0;--red-tint:rgba(225,6,0,0.08);
+  --max:640px;--wide:960px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.logo-wordmark{font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em}
+a{color:inherit;text-decoration:none}
+
+.preview-banner{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:var(--yellow);color:var(--black);text-align:center;
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;
+}
+body{padding-top:28px}
+
+/* HERO */
+.hero{
+  background:linear-gradient(180deg,var(--red-tint) 0%,var(--white) 55%);
+  padding:32px 20px 56px;
+}
+.hero-inner{
+  max-width:var(--wide);margin:0 auto;
+  display:grid;gap:40px;align-items:start;
+}
+@media(min-width:860px){
+  .hero-inner{grid-template-columns:1fr 400px;gap:48px}
+}
+
+.hero-copy{text-align:center}
+@media(min-width:860px){.hero-copy{text-align:left;padding-top:8px}}
+
+.hero-logo{margin:0 auto 20px;display:flex;justify-content:center}
+@media(min-width:860px){.hero-logo{justify-content:flex-start}}
+.logo-wordmark{
+  display:flex;flex-direction:column;line-height:0.95;
+  font-size:24px;font-weight:800;letter-spacing:0.08em;color:var(--black);
+}
+.logo-wordmark span{color:var(--red);font-size:18px;letter-spacing:0.16em}
+
+.page-tag{
+  display:inline-block;font-size:13px;font-weight:700;color:var(--red);
+  letter-spacing:0.1em;text-transform:uppercase;margin-bottom:12px;
+}
+.hero h1{
+  font-size:clamp(30px,5.5vw,46px);font-weight:800;line-height:1.06;
+  text-transform:uppercase;color:var(--black);margin-bottom:16px;
+}
+.hero-lead{
+  font-size:clamp(16px,2.2vw,20px);color:var(--muted);
+  line-height:1.55;max-width:520px;
+}
+@media(min-width:860px){.hero-lead{max-width:none}}
+
+/* FORM */
+.opt-form{
+  background:var(--white);border:1px solid var(--border);border-radius:12px;
+  padding:28px 24px 32px;box-shadow:0 12px 40px rgba(0,0,0,0.08);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:480px){.form-row{grid-template-columns:1fr}}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;color:var(--text)}
+.form-group input,.form-group textarea{
+  width:100%;padding:11px 13px;border:1px solid #ACACAC;border-radius:8px;
+  font-family:inherit;font-size:15px;background:#fff;color:var(--text);
+}
+.form-group textarea{min-height:80px;resize:vertical}
+.btn-submit{
+  display:block;width:100%;margin-top:4px;padding:16px 20px;
+  background:var(--red);color:#fff;border:none;border-radius:8px;
+  font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
+  box-shadow:0 4px 16px rgba(var(--red-rgb),0.35);
+  transition:background 0.2s,transform 0.15s;
+}
+.btn-submit:hover{background:var(--red-dark);transform:translateY(-1px)}
+.form-note{
+  text-align:center;font-size:14px;color:var(--gray);margin-top:14px;
+  font-style:italic;
+}
+
+/* BENEFITS */
+.benefits{padding:56px 20px 64px;background:var(--white)}
+.benefits-inner{max-width:var(--wide);margin:0 auto;text-align:center}
+.benefits h2{
+  font-size:clamp(24px,4vw,36px);font-weight:800;text-transform:uppercase;
+  line-height:1.12;margin-bottom:16px;color:var(--black);
+}
+.benefits .intro{
+  font-size:clamp(16px,2vw,19px);color:var(--muted);max-width:760px;
+  margin:0 auto 40px;line-height:1.6;
+}
+.benefit-grid{
+  display:grid;gap:20px;text-align:left;
+}
+@media(min-width:640px){.benefit-grid{grid-template-columns:1fr 1fr}}
+@media(min-width:960px){.benefit-grid{grid-template-columns:1fr 1fr 1fr}}
+
+.benefit-card{
+  background:var(--white);border:1px solid var(--border);border-radius:10px;
+  padding:22px 20px;border-top:3px solid var(--red);
+  transition:box-shadow 0.2s;
+}
+.benefit-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.07)}
+.benefit-card h3{
+  font-size:18px;font-weight:700;color:var(--black);margin-bottom:8px;
+  line-height:1.25;
+}
+.benefit-card p{font-size:15px;color:var(--muted);line-height:1.6}
+
+/* BOTTOM CTA */
+.bottom-cta{
+  background:var(--black);padding:48px 20px;text-align:center;
+}
+.bottom-cta a{
+  display:inline-block;background:var(--red);color:#fff;
+  padding:18px 36px;border-radius:8px;
+  font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;
+  letter-spacing:0.07em;text-transform:uppercase;
+  box-shadow:0 6px 24px rgba(var(--red-rgb),0.4);
+  transition:background 0.2s,transform 0.15s;
+}
+.bottom-cta a:hover{background:var(--red-dark);transform:translateY(-2px)}
+
+/* FOOTER */
+.site-footer{
+  background:var(--dark);color:rgba(255,255,255,0.5);
+  padding:28px 20px 36px;text-align:center;font-size:12px;line-height:1.7;
+}
+.site-footer a{color:rgba(255,255,255,0.65)}
+.site-footer a:hover{color:#fff}
+.footer-links{margin-bottom:16px;display:flex;justify-content:center;gap:12px}
+.disclaimer{max-width:680px;margin:0 auto;font-size:11px;color:rgba(255,255,255,0.38)}
+</style>
+</head>
+<body>
+
+<div class="preview-banner">Preview only — motorsportslaunch.com/opt-in · Not published</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-logo">
+        <span class="logo-wordmark" aria-label="Motorsports Launch">MOTORSPORTS<span>LAUNCH</span></span>
+      </div>
+      <p class="page-tag">Powersports Dealership Website Audit</p>
+      <h1>Powersports Dealership Owners: Your Website Is Losing You Customers Every Week… And You Don't Know How Many</h1>
+      <p class="hero-lead">We audit your dealership's entire online presence, fix the leaks costing you showroom visits, then run targeted ads that put you in front of ready-to-buy customers in your market — every single month.</p>
+    </div>
+
+    <form class="opt-form" id="opt-form" onsubmit="return handlePreviewSubmit(event)">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="first">First Name</label>
+          <input type="text" id="first" name="first_name" placeholder="First name" required>
+        </div>
+        <div class="form-group">
+          <label for="last">Last Name</label>
+          <input type="text" id="last" name="last_name" placeholder="Last name" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" placeholder="you@dealership.com" required>
+      </div>
+      <div class="form-group">
+        <label for="phone">Phone *</label>
+        <input type="tel" id="phone" name="phone" placeholder="(555) 555-5555" required>
+      </div>
+      <div class="form-group">
+        <label for="about">Tell us about yourself</label>
+        <textarea id="about" name="about" placeholder="Dealership name, brands you carry, market area…"></textarea>
+      </div>
+      <button type="submit" class="btn-submit">Show Me Where I'm Losing Sales</button>
+      <p class="form-note">Takes 30 minutes. Could change your entire sales season.</p>
+    </form>
+  </div>
+</section>
+
+<section class="benefits">
+  <div class="benefits-inner">
+    <h2>Here Is Exactly What You Will Get With Your Free Audit</h2>
+    <p class="intro">When you book your free 30-minute audit we pull up your dealership's entire online presence live on the call and show you exactly where buyers are leaving, why your website isn't converting, and the 2–3 fixes that would immediately bring more customers through your door.</p>
+
+    <div class="benefit-grid">
+      <div class="benefit-card">
+        <h3>Website Traffic Review</h3>
+        <p>We show you exactly how many people visited your dealership's website last month, whether that number is going up or down, and how it compares to the top-performing powersports dealer in your market. Most owners are shocked by what they see.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Lead Leak Audit</h3>
+        <p>We identify every place on your website where a ready-to-buy customer tried to reach you and couldn't. No pricing. No shoppable inventory. Forms buried where nobody finds them. We show you every leak with your actual website on the screen.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Competitor Intelligence</h3>
+        <p>We show you exactly what the top powersports dealership in your market is doing online right now — their ads, their Google ranking, their review volume, and why buyers are choosing them before they ever find you.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Google Business Profile Score</h3>
+        <p>We pull your Google Business Profile live and show you why buyers searching "powersports dealer near me" are finding your competitor first — and the exact fixes that move you into the top 3 results in your market.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Your Revenue Leak Number</h3>
+        <p>We calculate exactly how much revenue your website is costing you every month based on your current traffic, your conversion rate, and the average unit sale in your market. Most dealership owners leave the call with a number they can't unsee.</p>
+      </div>
+      <div class="benefit-card">
+        <h3>Your 90-Day Fix Plan</h3>
+        <p>We tell you exactly what to fix first, what to fix second, and what would make the biggest difference to your showroom visits and sales — in priority order, with no fluff and no guesswork.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="bottom-cta">
+  <a href="#opt-form">Get My Online Sales Audit</a>
+</section>
+
+<footer class="site-footer">
+  <div class="footer-links">
+    <a href="#">Terms</a>
+    <span style="opacity:0.3">|</span>
+    <a href="#">Privacy</a>
+  </div>
+  <p class="disclaimer">This website is NOT endorsed by YouTube, Google or Facebook in any way. FACEBOOK is a trademark of FACEBOOK Inc. YOUTUBE is a trademark of GOOGLE Inc.</p>
+  <p class="disclaimer" style="margin-top:10px">Individual experiences presented here may not be typical. Their background, education, effort, and application affected their experience. The information shared here are for example purposes and not a guarantee of a rate of return or a specific result. Your results may vary.</p>
+</footer>
+
+<script>
+function handlePreviewSubmit(e) {
+  e.preventDefault();
+  alert('Preview only — form is not connected. On the live site this submits and routes to your audit booking flow.');
+  return false;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Last Step — Book Your Free Online Presence Audit</title>
+<!--
+  CASE STUDY BOOKING / SCHEDULER  (funnel step 2 of 3: OPT-IN → CALENDAR → PRE-CALL)
+  Follows case-study-optin.html. Same proven scheduler structure as the playbook booking page,
+  rebuilt in the case study opt-in's exact tokens so the two pages are seamless.
+  Proof anchor = the REAL 49-in-11-days result card carried over from the opt-in.
+
+  TO CUSTOMIZE / WIRE:
+   • In case-study-optin.html, change the success redirect from booking-calendar.html → case-study-booking.html
+   • CALENDAR: paste your GHL (or Calendly) embed into #calendar-slot. On booking, redirect → thank-you/
+   • The 49 / 11-day numbers are the client's REAL result — keep them real (FTC + trust).
+   • "More stores" proof block near the bottom is a REAL-ONLY scaffold, commented out by default.
+     Uncomment ONLY when you have real screenshots + verbatim quotes. Never fabricate results.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ---- shared tokens: identical to case-study-optin.html (seamless funnel) ---- */
+  :root{
+    --white:#FFFFFF; --paper:#FAF9F6; --block:#E4DFDB; --ink:#0E0C0B; --ink-2:#161311;
+    --gray:#403B36; --muted:#857E76; --muted-dark:#A79F97;
+    --red:#CE1126; --red-2:#E23A4C; --red-dark:#A80E1F; --line:#E7E1D8; --line-dark:rgba(250,249,246,.14);
+    --wrap:820px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--paper);color:var(--gray);font-family:'Manrope',system-ui,sans-serif;
+    font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:'Montserrat',sans-serif;text-transform:uppercase;line-height:1.06;font-weight:900;letter-spacing:-.01em;color:var(--ink)}
+  .red{color:var(--red)}
+  .wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:1.2rem}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:.55rem;font-family:'Montserrat';font-weight:800;
+    font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink)}
+  .eyebrow::before{content:"";width:3px;height:1.05em;background:var(--red);flex:none}
+  .eyebrow.on-ink{color:var(--paper)}
+  .eyebrow.on-ink::before{background:var(--red-2)}
+
+  .btn{display:flex;align-items:center;justify-content:center;gap:.5rem;width:100%;cursor:pointer;
+    font-family:'Montserrat';font-weight:900;font-size:1.06rem;letter-spacing:.03em;text-transform:uppercase;
+    padding:1.1em 1.4em;border-radius:7px;border:0;background:var(--red);color:#fff;transition:.15s;
+    box-shadow:0 12px 26px rgba(206,17,38,.3);line-height:1.15}
+  .btn:hover{background:var(--red-dark);transform:translateY(-2px)}
+  .btn svg{flex:none}
+
+  /* ---------- TOP BAR + FUNNEL PROGRESS ---------- */
+  .topbar{border-bottom:1px solid var(--line);background:var(--paper)}
+  .topbar .row{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.95rem}
+  .logo{display:inline-flex;align-items:center;gap:.55rem}
+  .logo .mk{width:32px;height:32px;flex:none}
+  .logo .w1{font-family:'Montserrat';font-weight:800;font-size:.98rem;letter-spacing:.02em;text-transform:uppercase;color:var(--ink);line-height:.85;display:block}
+  .logo .w2{font-family:'Montserrat';font-weight:700;font-size:.6rem;letter-spacing:.4em;color:var(--red);text-transform:uppercase;display:block;margin-top:2px}
+  .steps{display:flex;align-items:center;gap:.5rem}
+  .step{display:flex;align-items:center;gap:.45rem;font-family:'Montserrat';font-weight:800;font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted-dark)}
+  .step .b{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:.6rem;color:var(--muted-dark);flex:none}
+  .step.done .b{background:var(--ink);border-color:var(--ink);color:#fff}
+  .step.active{color:var(--ink)}
+  .step.active .b{background:var(--red);border-color:var(--red);color:#fff}
+  .step .lbl{display:none}
+  .step .bar{width:20px;height:2px;background:var(--line);flex:none}
+  @media (min-width:720px){.step .lbl{display:inline}.step .bar{width:34px}}
+
+  /* ---------- CONFIRMATION HEADER ---------- */
+  .head{text-align:center;padding:2.4rem 0 1.6rem}
+  .head .conf{display:inline-flex;align-items:center;gap:.5rem;background:var(--block);border:1px solid var(--line);
+    border-radius:100px;padding:.5rem .95rem;font-family:'Montserrat';font-weight:800;font-size:.72rem;
+    letter-spacing:.03em;text-transform:uppercase;color:var(--ink);margin-bottom:1.4rem}
+  .head .conf svg{flex:none}
+  .head h1{font-size:clamp(1.65rem,4.8vw,2.5rem);margin-bottom:1rem;max-width:20ch;margin-inline:auto}
+  .head .sub{max-width:56ch;margin:0 auto;font-size:1.06rem;color:var(--gray)}
+  .head .sub b{color:var(--ink)}
+
+  /* ---------- REAL RESULT ANCHOR (carried from opt-in) ---------- */
+  .anchor{background:var(--block);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:2rem 0 2.3rem}
+  .anchor .cap-top{text-align:center;margin-bottom:1.3rem}
+  .anchor .cap-bottom{text-align:center;margin-top:1.2rem;font-family:'Montserrat';font-weight:800;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .result-wrap{display:flex;justify-content:center}
+  .result-card{width:100%;max-width:460px;background:var(--ink);border-radius:18px;padding:clamp(1.8rem,4vw,2.4rem);color:#fff;box-shadow:0 30px 60px rgba(20,15,10,.28);position:relative;overflow:hidden}
+  .result-card::before{content:"";position:absolute;top:-40%;right:-20%;width:70%;height:80%;background:radial-gradient(circle,rgba(206,17,38,.22),transparent 70%)}
+  .rc-eye{position:relative;display:flex;align-items:center;gap:.5rem;font-family:'Montserrat';font-weight:800;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;color:var(--red-2)}
+  .rc-eye i{width:15px;height:2px;background:var(--red-2)}
+  .rc-big{position:relative;display:flex;align-items:flex-end;gap:.8rem;margin-top:1.1rem}
+  .rc-num{font-family:'Montserrat';font-weight:900;font-size:clamp(4rem,16vw,5.6rem);line-height:.8;color:#fff;letter-spacing:-.03em}
+  .rc-lbl{font-family:'Montserrat';font-weight:800;font-size:.92rem;text-transform:uppercase;line-height:1.1;color:#E4DDD3;padding-bottom:.55rem;letter-spacing:.01em}
+  .rc-days{position:relative;font-family:'Montserrat';font-weight:800;font-size:1.15rem;text-transform:uppercase;color:#fff;margin-top:.3rem;letter-spacing:.02em}
+  .rc-days b{color:var(--red-2)}
+  .rc-chart{position:relative;width:100%;height:auto;margin:1.3rem 0 .6rem;display:block}
+  .rc-foot{position:relative;display:flex;align-items:center;justify-content:space-between;padding-top:1.1rem;border-top:1px solid rgba(255,255,255,.12);font-family:'Montserrat';font-weight:800;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase}
+  .rc-foot .zero{color:#fff}.rc-foot .zero b{color:var(--red-2)}
+  .rc-foot .rc-by{color:var(--muted)}.rc-foot .rc-by b{color:#fff}
+
+  /* ---------- CALENDAR BAND (ink) ---------- */
+  .cal{background:var(--ink);color:var(--paper);padding:2.2rem 0 2.6rem}
+  .cal .lead{text-align:center;max-width:56ch;margin:.8rem auto 0;color:var(--muted-dark);font-size:1.02rem}
+  .cal h2{color:var(--paper);text-align:center;font-size:clamp(1.4rem,3.6vw,2rem);margin-top:.7rem}
+  .cal .center{text-align:center}
+  .cal-card{background:var(--white);border-radius:12px;margin-top:1.8rem;overflow:hidden;box-shadow:0 26px 60px rgba(0,0,0,.34)}
+  #calendar-slot{min-height:520px;width:100%;border:0;display:block}
+  .cal-fallback{min-height:420px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.7rem;
+    text-align:center;padding:2.6rem 1.4rem;color:var(--muted)}
+  .cal-fallback .ic{width:52px;height:52px;color:var(--red)}
+  .cal-fallback b{font-family:'Montserrat';font-weight:800;font-size:1rem;text-transform:uppercase;color:var(--ink);letter-spacing:.01em}
+  .cal-fallback span{font-size:.9rem;max-width:40ch}
+  .cal-note{margin-top:1.3rem;display:grid;gap:.7rem}
+  .cal-note .n{display:flex;gap:.65rem;align-items:flex-start;color:var(--paper);font-size:1rem;line-height:1.45}
+  .cal-note .n svg{flex:none;margin-top:.15em;color:var(--red-2)}
+  @media (min-width:640px){.cal-note{grid-template-columns:1fr 1fr 1fr;gap:1.1rem}.cal-note .n{flex-direction:column}}
+
+  /* ---------- GENERIC SECTIONS ---------- */
+  .sec{padding:clamp(2.4rem,5.5vw,3.6rem) 0}
+  .sec--band{background:var(--block);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .sec h2{font-size:clamp(1.55rem,4vw,2.2rem);margin-bottom:1rem}
+  .prose p{margin-bottom:.55rem;font-size:1.12rem;color:var(--gray);max-width:62ch}
+  .prose p.tight{margin-bottom:.15rem}
+  .prose p b{color:var(--ink)}
+  .prose .gap{height:1.1rem}
+
+  /* transition band */
+  .transition{background:var(--ink);color:var(--paper);text-align:center;padding:2.1rem 0}
+  .transition p{font-family:'Montserrat';font-weight:800;text-transform:uppercase;letter-spacing:.02em;
+    font-size:clamp(1.15rem,3vw,1.55rem);color:var(--paper);max-width:26ch;margin:0 auto;line-height:1.2}
+  .transition p .red{color:var(--red-2)}
+
+  /* fork */
+  .fork{display:grid;gap:1rem;margin-top:1.4rem}
+  .fork .opt{border:1px solid var(--line);border-radius:10px;padding:1.4rem 1.5rem;background:var(--white)}
+  .fork .opt .k{font-family:'Montserrat';font-weight:800;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:.5rem}
+  .fork .opt p{font-size:1.06rem;color:var(--gray);margin:0}
+  .fork .opt.win{border-color:var(--red);border-left-width:4px}
+  .fork .opt.win .k{color:var(--red)}
+  .fork .opt.win p{color:var(--ink);font-weight:600}
+  @media (min-width:640px){.fork{grid-template-columns:1fr 1fr;align-items:stretch}}
+
+  /* checklist */
+  .clist{list-style:none;display:flex;flex-direction:column;gap:.8rem;margin:1.3rem 0 1.2rem}
+  .clist li{display:flex;gap:.7rem;align-items:flex-start;font-size:1.1rem;color:var(--gray)}
+  .clist li svg{flex:none;margin-top:.15em}
+  .clist li b{color:var(--ink)}
+  .kicker{font-family:'Montserrat';font-weight:800;font-size:1.1rem;text-transform:uppercase;color:var(--ink);letter-spacing:.01em}
+  .kicker .red{color:var(--red)}
+
+  .cta-wrap{max-width:520px;margin:1.9rem auto 0}
+  .cta-sub{text-align:center;font-family:'Montserrat';font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:.9rem}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--ink);color:#fff;padding:2.6rem 0 2.8rem;text-align:center}
+  footer .logo{justify-content:center}
+  footer .logo .w1{color:#fff}
+  .foot-legal{color:rgba(255,255,255,.42);font-size:.74rem;max-width:66ch;margin:1.4rem auto 0;line-height:1.65}
+
+  /* ---------- STICKY "GET MY AUDIT" BAR (reveals mid-scroll; tucks away over the calendar + footer) ---------- */
+  .sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:60;background:var(--paper);
+    border-top:1px solid var(--line);box-shadow:0 -10px 30px rgba(20,15,10,.1);
+    transform:translateY(115%);transition:transform .28s ease;padding:.7rem 0}
+  .sticky-cta.show{transform:translateY(0)}
+  .sticky-cta .inner{max-width:var(--wrap);margin-inline:auto;padding-inline:1.2rem;
+    display:flex;align-items:center;justify-content:center;gap:1.2rem;flex-wrap:wrap}
+  .sticky-cta .label{font-family:'Montserrat';font-weight:900;font-size:clamp(1rem,2.4vw,1.4rem);
+    text-transform:uppercase;letter-spacing:.01em;color:var(--ink);line-height:1}
+  .sticky-cta .act{display:flex;flex-direction:column;align-items:center;gap:.35rem}
+  .sticky-cta .sbtn{display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+    font-family:'Montserrat';font-weight:900;font-size:1rem;letter-spacing:.03em;text-transform:uppercase;
+    padding:.9em 1.6em;border-radius:7px;border:0;background:var(--red);color:#fff;cursor:pointer;
+    box-shadow:0 10px 22px rgba(206,17,38,.3);transition:.15s;line-height:1}
+  .sticky-cta .sbtn:hover{background:var(--red-dark);transform:translateY(-2px)}
+  .sticky-cta .sbtn svg{flex:none}
+  .sticky-cta .sub{font-family:'Manrope';font-size:.74rem;font-weight:600;color:var(--muted);letter-spacing:.01em}
+  @media (max-width:560px){.sticky-cta .label{display:none}.sticky-cta .sbtn{font-size:.94rem;padding:.85em 1.35em}}
+  @media (prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
+
+  :focus-visible{outline:3px solid var(--red);outline-offset:3px;border-radius:3px}
+  @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+  @media (max-width:480px){.rc-num{font-size:4.4rem}}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR + PROGRESS -->
+<header class="topbar">
+  <div class="wrap row">
+    <a class="logo" href="/">
+      <svg class="mk" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="37" rx="17" ry="3.4" stroke="#0E0C0B" stroke-width="1.6"/><ellipse cx="24" cy="37" rx="10.5" ry="2" stroke="#0E0C0B" stroke-width="1.4" opacity=".6"/><circle cx="24" cy="21" r="13" stroke="#0E0C0B" stroke-width="1.8"/><path d="M20 34 C18 24 22 15 31 8 C27 17 27 26 28 34 Z" fill="#CE1126"/></svg>
+      <span><span class="w1">Hot Tub</span><span class="w2">Launch</span></span>
+    </a>
+    <div class="steps" aria-label="Funnel progress: step 2 of 3">
+      <div class="step done"><span class="b">✓</span><span class="lbl">Case study</span></div>
+      <span class="bar"></span>
+      <div class="step active"><span class="b">2</span><span class="lbl">Book call</span></div>
+      <span class="bar"></span>
+      <div class="step"><span class="b">3</span><span class="lbl">You're set</span></div>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- CONFIRMATION HEADER -->
+  <section class="head">
+    <div class="wrap">
+      <div class="conf">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Your case study is on the way
+      </div>
+      <h1>One store got 49 leads in 11 days by sealing its leaks. <span class="red">Now let's find yours.</span></h1>
+      <p class="sub">The full breakdown lands in your inbox in the next few minutes. <b>But reading how another store did it won't move a single lead on your site.</b> The call below will — we run the same audit on your store, live, and show you exactly which leaks are costing you buyers.</p>
+    </div>
+  </section>
+
+  <!-- REAL RESULT ANCHOR (the exact result card from the opt-in — keep the numbers real) -->
+  <section class="anchor">
+    <div class="wrap">
+      <div class="cap-top"><span class="eyebrow">The result you're about to read</span></div>
+      <div class="result-wrap">
+        <div class="result-card">
+          <div class="rc-eye"><i></i>Hot Tub Website Case Study</div>
+          <div class="rc-big"><span class="rc-num">49</span><span class="rc-lbl">Hot tub &amp; swim spa<br>leads captured</span></div>
+          <div class="rc-days">in just <b>11 days</b></div>
+          <svg class="rc-chart" viewBox="0 0 320 100" preserveAspectRatio="none" aria-hidden="true">
+            <defs><linearGradient id="rcg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#CE1126" stop-opacity=".38"/><stop offset="1" stop-color="#CE1126" stop-opacity="0"/></linearGradient></defs>
+            <path d="M0 90 L32 84 L64 79 L96 70 L128 63 L160 54 L192 44 L224 34 L256 25 L288 15 L320 6 L320 100 L0 100 Z" fill="url(#rcg)"/>
+            <polyline points="0,90 32,84 64,79 96,70 128,63 160,54 192,44 224,34 256,25 288,15 320,6" fill="none" stroke="#E23A4C" stroke-width="2.6" stroke-linejoin="round"/>
+            <circle cx="320" cy="6" r="4.5" fill="#E23A4C"/>
+          </svg>
+          <div class="rc-foot"><span class="zero"><b>$0</b> extra ad spend</span><span class="rc-by">By <b>Hot Tub Launch</b></span></div>
+        </div>
+      </div>
+      <p class="cap-bottom">One real store · One 11-day window · Zero new ad spend</p>
+    </div>
+  </section>
+
+  <!-- CALENDAR BAND -->
+  <section class="cal" id="book">
+    <div class="wrap">
+      <div class="center"><span class="eyebrow on-ink">Last step · Pick a time</span></div>
+      <h2>Book your free Online Presence Audit</h2>
+      <p class="lead">One call. We walk your entire online showroom — speed, follow-up, message, proof — the way a ready buyer sees it, and name every leak with the real number behind it.</p>
+
+      <div class="cal-card">
+        <!-- ▼▼▼ PASTE YOUR GHL / CALENDLY EMBED HERE (replace the whole .cal-fallback block) ▼▼▼
+             Example iframe:
+             <iframe id="calendar-slot" src="https://api.leadconnectorhq.com/widget/booking/XXXX" scrolling="no"></iframe>
+             On successful booking, set the calendar's redirect to thank-you/ -->
+        <div class="cal-fallback" id="calendar-slot">
+          <svg class="ic" viewBox="0 0 24 24" fill="none"><rect x="3" y="4.5" width="18" height="16" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M3 9h18M8 2.5v4M16 2.5v4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M8 13l2.5 2.5L16 11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          <b>Your booking calendar loads here</b>
+          <span>Paste your GHL or Calendly embed into <code>#calendar-slot</code>, then set the post-booking redirect to <code>thank-you/</code> (full URL: <code>/case-study/thank-you/</code>).</span>
+        </div>
+        <!-- ▲▲▲ END embed slot ▲▲▲ -->
+      </div>
+
+      <div class="cal-note">
+        <div class="n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>We walk your online showroom together — the way a ready buyer sees it.</span></div>
+        <div class="n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>Every leak named, with the real number behind it — the same drop-offs that store fixed.</span></div>
+        <div class="n"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M7 12.5l3.2 3.2L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg><span>You leave with the plan to seal it — whether or not we ever work together.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSITION -->
+  <div class="transition">
+    <div class="wrap"><p>Reading about it changes nothing. <span class="red">Doing it does.</span></p></div>
+  </div>
+
+  <!-- MOST OWNERS STOP HERE -->
+  <section class="sec">
+    <div class="wrap prose">
+      <span class="eyebrow" style="margin-bottom:1rem">Most owners stop here</span>
+      <h2>You've got the case study. Most owners stop right there.</h2>
+      <p>Grabbing it already puts you ahead of most. But here's what usually happens next.</p>
+      <div class="gap"></div>
+      <p class="tight">You read it. You nod along. You think "we could do that."</p>
+      <p class="tight">Then Monday hits — the floor, the phones, the showroom — and the tab closes.</p>
+      <div class="gap"></div>
+      <p class="tight">Your site still loads slow. Your form still leaks. Your reviews still sit buried.</p>
+      <p class="tight">A year passes. Nothing on the site actually changed.</p>
+      <div class="gap"></div>
+      <p>The 49 leads that store captured? On your site, those buyers are still leaving. <b>And you never see it happen — you just see a quieter week.</b></p>
+      <div class="gap"></div>
+      <p>That store didn't read one more case study. <b>They booked the call.</b></p>
+    </div>
+  </section>
+
+  <!-- THE FORK -->
+  <section class="sec sec--band">
+    <div class="wrap">
+      <span class="eyebrow" style="margin-bottom:1rem">The real question</span>
+      <h2>Which owner do you want to be a year from now?</h2>
+      <div class="fork">
+        <div class="opt">
+          <div class="k">Owner A</div>
+          <p>Read the case study. Runs a site that still leaks — same drop-off, same ready buyers slipping to an easier competitor.</p>
+        </div>
+        <div class="opt win">
+          <div class="k">Owner B</div>
+          <p>Booked the call, sealed the leaks, and watched their own site start converting the traffic they already had.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NOT A SOMEDAY PLAN -->
+  <section class="sec">
+    <div class="wrap prose">
+      <p style="margin-bottom:1rem">What that store did isn't a "someday" plan. It's a repeatable way to:</p>
+      <ul class="clist">
+        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Seal the leaks quietly costing you buyers</b> — the same ones the case study exposes.</span></li>
+        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Turn the traffic you already have into booked wet tests</b> — without spending a dollar more on ads.</span></li>
+        <li><svg width="24" height="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="11" fill="#CE1126"/><path d="M7 12.5l3.2 3.2L17 9" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg><span><b>Make your site do the selling</b>, so the month stops swinging with the season.</span></li>
+      </ul>
+      <p class="kicker">Not in five years. <span class="red">This season.</span></p>
+    </div>
+  </section>
+
+  <!-- WHY BOOK NOW — THE HONEST OFFER -->
+  <section class="sec sec--band">
+    <div class="wrap prose">
+      <span class="eyebrow" style="margin-bottom:1rem">Why book the call now</span>
+      <h2>Because reading isn't the same as fixing.</h2>
+      <p>You grabbed the case study. You scrolled this far. You're not looking for one more thing to file away — you want that result on your own site.</p>
+      <div class="gap"></div>
+      <p>So here it is. Get on a call and we run the same audit on your store, live. Every leak, named, with the number behind it — the exact drop-offs that store fixed to get 49 leads in 11 days.</p>
+      <div class="gap"></div>
+      <p><b>It's free. There's no pitch until you ask for one.</b></p>
+      <div class="gap"></div>
+      <p>And the first thing we'll probably tell you is the thing no other agency has the nerve to say: <b>don't advertise yet.</b> Seal the store first. Then every dollar you spend actually stays.</p>
+
+      <div class="cta-wrap"><a class="btn" href="#top">Book My Free Audit
+        <svg width="18" height="12" viewBox="0 0 18 12" fill="none"><path d="M1 6h15m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.2"/></svg></a></div>
+      <p class="cta-sub">Takes 60 seconds · One store per market</p>
+    </div>
+  </section>
+
+  <!--
+    ══════════════════════════════════════════════════════════════════════════
+    OPTIONAL "MORE STORES" PROOF — REAL RESULTS ONLY. Commented out by default.
+    The 49-in-11-days card above is this page's real proof anchor, so you don't
+    need an empty wall here. When you have MORE real stories, uncomment this and
+    populate each card with a REAL screenshot (into .shot) and a REAL, verbatim
+    quote. NEVER fabricate names, numbers, dashboards, or quotes — fake results
+    violate the FTC and detonate the "built by a real business owner" claim.
+    (You'll also need to add back the .proof / .proof-grid / .proof-card CSS.)
+
+    <section class="sec proof" id="proof">
+      <div class="wrap">
+        <span class="eyebrow" style="display:flex;justify-content:center;margin-bottom:1rem">Real stores · real results</span>
+        <h2 style="text-align:center">More stores that sealed the leaks first</h2>
+        <div class="proof-grid">
+          <div class="proof-card">
+            <div class="shot"><img src="REAL-SCREENSHOT.png" alt="Real result"></div>
+            <p class="quote">Real verbatim quote from this owner.</p>
+            <div class="who">Store Owner Name<span>Store · City, ST</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  -->
+
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <a class="logo" href="/">
+      <svg class="mk" viewBox="0 0 48 48" fill="none"><ellipse cx="24" cy="37" rx="17" ry="3.4" stroke="#FAF9F6" stroke-width="1.6"/><ellipse cx="24" cy="37" rx="10.5" ry="2" stroke="#FAF9F6" stroke-width="1.4" opacity=".5"/><circle cx="24" cy="21" r="13" stroke="#FAF9F6" stroke-width="1.8"/><path d="M20 34 C18 24 22 15 31 8 C27 17 27 26 28 34 Z" fill="#CE1126"/></svg>
+      <span><span class="w1">Hot Tub</span><span class="w2">Launch</span></span>
+    </a>
+    <p class="foot-legal">This website is not endorsed by or affiliated with Facebook, Google, or YouTube in any way. Individual results presented here reflect one store's experience and may not be typical. Your background, effort, and execution affect outcomes, and nothing here is a guarantee of any specific result. © 2026 Hot Tub Launch. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- STICKY "GET MY AUDIT" BAR — reveals while scrolling the persuasion sections, tucks away over the calendar + footer -->
+<div class="sticky-cta" id="stickyCta" aria-hidden="true">
+  <div class="inner">
+    <span class="label">Grow Your Store</span>
+    <div class="act">
+      <a class="sbtn" href="#book">Get My Audit
+        <svg width="16" height="11" viewBox="0 0 18 12" fill="none"><path d="M1 6h15m0 0-5-5m5 5-5 5" stroke="currentColor" stroke-width="2.2"/></svg></a>
+      <span class="sub">Built on 10+ Years of Experience</span>
+    </div>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var bar = document.getElementById('stickyCta');
+    if(!bar) return;
+    var book = document.getElementById('book');       // calendar section
+    var foot = document.querySelector('footer');
+    function toggle(on){ bar.classList.toggle('show', on); bar.setAttribute('aria-hidden', on ? 'false' : 'true'); }
+
+    // Fallback for older browsers: simple scroll threshold, hide near the footer
+    if(!('IntersectionObserver' in window)){
+      window.addEventListener('scroll', function(){
+        var y = window.pageYOffset || document.documentElement.scrollTop;
+        var footTop = foot ? foot.getBoundingClientRect().top : Infinity;
+        toggle(y > 700 && footTop > window.innerHeight);
+      }, {passive:true});
+      return;
+    }
+
+    // Show only when the calendar is out of view AND the footer isn't yet in view
+    var calVisible = true, footVisible = false;
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.target === book) calVisible = e.isIntersecting;
+        if(e.target === foot) footVisible = e.isIntersecting;
+      });
+      toggle(!calVisible && !footVisible);
+    }, {threshold:0, rootMargin:'0px 0px -10% 0px'});
+    if(book) io.observe(book);
+    if(foot) io.observe(foot);
+  })();
+</script>
+
+</body>
+</html>

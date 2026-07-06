@@ -1,0 +1,6 @@
+hero-video-source.mp4
+deploy.sh
+wrangler.toml
+.assetsignore
+motorsports-preview/
+hottublaunchai-preview/

@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Apply for a free dealership growth audit — Motorsports Launch">
+<title>Motorsports Launch — Application</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --red:#E10600;--red-dark:#BB0A00;--red-rgb:225,6,0;
+  --yellow:#FFD700;--black:#0C0C0C;--dark:#161616;
+  --text:#141414;--muted:#565A7C;--gray:#8893A8;
+  --border:#E8EAED;--white:#fff;
+  --red-faint:#FFF0F0;--red-tint:rgba(225,6,0,0.08);
+  --max:720px;--wide:900px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:'Plus Jakarta Sans',sans-serif;font-size:16px;color:var(--text);background:var(--white);line-height:1.65;-webkit-font-smoothing:antialiased}
+h1,h2,h3,.logo-wordmark{font-family:'Barlow Condensed',sans-serif;letter-spacing:0.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+
+.preview-banner{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  background:var(--yellow);color:var(--black);text-align:center;
+  font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;
+  letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;
+}
+body{padding-top:28px;padding-bottom:72px}
+
+/* TOP BAR */
+.top-bar{text-align:center;padding:12px 20px 0}
+.experience-badge{
+  display:inline-block;font-size:13px;font-weight:600;color:var(--muted);
+  letter-spacing:0.04em;text-transform:uppercase;
+}
+
+/* HERO */
+.hero{
+  background:linear-gradient(180deg,var(--red-tint) 0%,var(--white) 100%);
+  padding:24px 20px 40px;text-align:center;
+}
+.hero-logo{margin:0 auto 20px;display:flex;justify-content:center}
+.logo-wordmark{
+  display:flex;flex-direction:column;line-height:0.95;
+  font-size:26px;font-weight:800;letter-spacing:0.08em;color:var(--black);
+}
+.logo-wordmark span{color:var(--red);font-size:20px;letter-spacing:0.16em}
+.hero h1{
+  font-size:clamp(28px,6vw,48px);font-weight:800;line-height:1.08;
+  text-transform:uppercase;color:var(--black);max-width:var(--wide);margin:0 auto 16px;
+}
+.hero h1 em{color:var(--red);font-style:normal}
+.hero-lead{
+  font-size:clamp(17px,2.5vw,25px);font-weight:400;color:var(--text);
+  max-width:var(--wide);margin:0 auto 8px;line-height:1.45;
+}
+.hero-sub{
+  font-size:clamp(15px,2vw,20px);color:var(--muted);
+  max-width:var(--wide);margin:0 auto 28px;line-height:1.5;
+}
+.hero-form-note{font-size:18px;font-weight:500;margin-bottom:20px;color:var(--text)}
+
+/* FORM */
+.app-form{
+  max-width:var(--max);margin:0 auto;background:var(--white);
+  border:1px solid var(--border);border-radius:12px;padding:28px 24px 32px;
+  box-shadow:0 8px 32px rgba(0,0,0,0.06);text-align:left;
+}
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:14px;font-weight:600;margin-bottom:6px;color:var(--text)}
+.form-group input,.form-group select,.form-group textarea{
+  width:100%;padding:12px 14px;border:1px solid #ACACAC;border-radius:8px;
+  font-family:inherit;font-size:15px;background:#fff;color:var(--text);
+}
+.form-group textarea{min-height:90px;resize:vertical}
+.form-group select{color:var(--muted)}
+.btn-submit{
+  display:block;width:100%;margin-top:8px;padding:16px 24px;
+  background:var(--red);color:#fff;border:none;border-radius:8px;
+  font-family:'Barlow Condensed',sans-serif;font-size:18px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;
+  box-shadow:0 4px 16px rgba(var(--red-rgb),0.35);
+  transition:background 0.2s,transform 0.15s;
+}
+.btn-submit:hover{background:var(--red-dark);transform:translateY(-1px)}
+
+/* SECTIONS */
+.section{padding:48px 20px;text-align:center}
+.section-dark{background:var(--black);color:#fff}
+.section h2{
+  font-size:clamp(24px,4.5vw,47px);font-weight:800;line-height:1.1;
+  text-transform:uppercase;max-width:var(--wide);margin:0 auto 12px;
+}
+.section h2 em{color:var(--red);font-style:normal}
+.section p.lead{font-size:clamp(16px,2vw,20px);color:var(--muted);max-width:var(--wide);margin:0 auto}
+
+/* VIDEO */
+.video-wrap{
+  max-width:720px;margin:32px auto 0;border-radius:12px;overflow:hidden;
+  position:relative;aspect-ratio:16/9;background:#111;
+  box-shadow:0 12px 48px rgba(0,0,0,0.2);
+}
+.video-wrap img{width:100%;height:100%;object-fit:cover;opacity:0.85}
+.video-play{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:10px;color:#fff;font-weight:600;font-size:14px;
+}
+.video-play-btn{
+  width:72px;height:72px;border-radius:50%;background:rgba(225,6,0,0.92);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(0,0,0,0.35);
+}
+.video-play-btn svg{margin-left:4px}
+
+/* LETTER */
+.letter{
+  max-width:680px;margin:0 auto;padding:40px 20px 60px;
+  font-size:17px;line-height:1.75;color:var(--text);
+}
+.letter p{margin-bottom:1.1em}
+.letter .salutation{font-weight:600;font-size:18px;margin-bottom:1.2em}
+.letter .emphasis{font-weight:600;color:var(--black)}
+.letter ul{margin:1em 0 1.2em 1.2em}
+.letter ul li{margin-bottom:0.5em}
+.letter .signoff{margin-top:2em;font-weight:600}
+.letter .ps{
+  margin-top:1.5em;padding:16px 18px;background:var(--red-faint);
+  border-left:4px solid var(--red);border-radius:0 8px 8px 0;
+  font-size:15px;color:var(--muted);
+}
+
+/* BOTTOM FORM */
+.bottom-form-wrap{
+  background:linear-gradient(180deg,var(--white) 0%,var(--red-tint) 100%);
+  padding:48px 20px 64px;text-align:center;
+}
+.bottom-form-wrap h2{font-size:clamp(22px,4vw,28px);font-weight:700;margin-bottom:8px}
+.bottom-form-wrap .hero-form-note{margin-bottom:24px}
+
+/* FOOTER */
+.site-footer{
+  background:var(--dark);color:rgba(255,255,255,0.55);
+  padding:32px 20px;text-align:center;font-size:13px;
+}
+.site-footer a{color:rgba(255,255,255,0.7)}
+.site-footer a:hover{color:#fff}
+.footer-links{margin-top:10px;display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+
+/* STICKY CTA */
+.sticky-cta{
+  position:fixed;bottom:0;left:0;right:0;z-index:900;
+  background:rgba(255,255,255,0.98);border-top:1px solid var(--border);
+  padding:10px 16px calc(10px + env(safe-area-inset-bottom,0));
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  box-shadow:0 -4px 24px rgba(0,0,0,0.08);
+}
+.sticky-cta span{font-size:13px;font-weight:600;color:var(--text)}
+.sticky-cta a{
+  background:var(--red);color:#fff;padding:12px 20px;border-radius:8px;
+  font-family:'Barlow Condensed',sans-serif;font-weight:700;font-size:15px;
+  letter-spacing:0.05em;text-transform:uppercase;white-space:nowrap;
+  box-shadow:0 4px 14px rgba(var(--red-rgb),0.3);
+}
+
+@media(max-width:600px){
+  .sticky-cta{flex-direction:column;align-items:stretch;text-align:center}
+  .sticky-cta a{text-align:center}
+  body{padding-bottom:120px}
+}
+</style>
+</head>
+<body>
+
+<div class="preview-banner">Preview only — motorsportslaunch.com/application · Not published</div>
+
+<div class="top-bar">
+  <span class="experience-badge">Built from 10+ Years Of Experience</span>
+</div>
+
+<section class="hero">
+  <div class="hero-logo">
+    <span class="logo-wordmark" aria-label="Motorsports Launch">MOTORSPORTS<span>LAUNCH</span></span>
+  </div>
+
+  <h1>Powersports Dealership Owners: Your Website Is Losing You Customers Every Week… And You Don't Know How Many</h1>
+
+  <p class="hero-lead">We audit your dealership's entire online presence, fix the leaks costing you showroom visits, then run targeted ads that put you in front of ready-to-buy customers in your market — every single month.</p>
+
+  <p class="hero-form-note">Fill out the form then book your strategy call on the next page</p>
+
+  <form class="app-form" id="form-top" onsubmit="return handlePreviewSubmit(event)">
+    <div class="form-group">
+      <label for="first-top">First Name</label>
+      <input type="text" id="first-top" name="first_name" placeholder="First name" required>
+    </div>
+    <div class="form-group">
+      <label for="phone-top">Phone *</label>
+      <input type="tel" id="phone-top" name="phone" placeholder="(555) 555-5555" required>
+    </div>
+    <div class="form-group">
+      <label for="email-top">Email *</label>
+      <input type="email" id="email-top" name="email" placeholder="you@dealership.com" required>
+    </div>
+    <div class="form-group">
+      <label for="about-top">Tell us about yourself</label>
+      <textarea id="about-top" name="about" placeholder="Dealership name, brands you carry, market area…"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="role-top">I am..</label>
+      <select id="role-top" name="role">
+        <option value="">Select one…</option>
+        <option>Dealership owner</option>
+        <option>General manager</option>
+        <option>Marketing manager</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <button type="submit" class="btn-submit">Book My Call</button>
+  </form>
+</section>
+
+<section class="section">
+  <h2>Book a quick demo to see how<br><em>Motorsports Launch</em> works and whether it makes sense for your showroom.</h2>
+</section>
+
+<section class="section section-dark">
+  <h2>We Help Powersports Dealerships Across The Country Stop Losing Customers They Never Knew They Had</h2>
+  <div class="video-wrap">
+    <img src="https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=1200&q=80" alt="Motorsports dealership preview video thumbnail">
+    <div class="video-play">
+      <div class="video-play-btn" aria-hidden="true">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      Enable sound
+    </div>
+  </div>
+</section>
+
+<article class="letter">
+  <p class="salutation">Dear Powersports Dealership Owner,</p>
+
+  <p>There are buyers in your area right now shopping for an ATV, UTV, motorcycle, or side-by-side.</p>
+  <p>They have the money.</p>
+  <p>They want the ride.</p>
+  <p>They've already decided they want one.</p>
+  <p>They go online.</p>
+  <p>They find your dealership.</p>
+  <p>They start looking around your site.</p>
+  <p>But then…</p>
+  <p>They can't see what units you actually have in stock.</p>
+  <p>They can't find pricing — not even a starting range.</p>
+  <p>They don't know what their monthly payment could look like.</p>
+  <p>They can't compare models without calling someone.</p>
+  <p>And when they finally try to reach out — the form is buried, confusing, or missing entirely.</p>
+  <p>So they leave.</p>
+  <p>No call.</p>
+  <p>No alert.</p>
+  <p>No notification.</p>
+  <p>You never knew they were there.</p>
+  <p>All you see is a quieter week.</p>
+  <p>A slower showroom.</p>
+  <p>A few less leads than you expected.</p>
+  <p>Meanwhile, those same buyers just spent $8,000, $12,000, even $25,000+ at another dealership.</p>
+  <p>Not because that store had better inventory.</p>
+  <p>Not because they had better prices.</p>
+  <p>Not because they had a better showroom.</p>
+  <p>Because their website was easier to shop.</p>
+  <p>And the worst part?</p>
+  <p class="emphasis">This isn't a one-time thing. It's happening every single week.</p>
+
+  <p>During the busy season, it feels great. People are walking in. Phones are ringing. Units are selling. Sometimes demand is strong enough to hide the problems in your system.</p>
+  <p>But when the season slows down, the leaks become impossible to ignore. The showroom gets quiet. The calls slow down. The leads dry up. And the sales you thought were predictable disappear.</p>
+  <p>That's when you realize you weren't controlling demand. You were relying on the season to bring buyers to you. And that is a dangerous place to be.</p>
+  <p>Because when you don't control your sales, you can't confidently hire. You hesitate to order more inventory. You second guess your marketing. You question if you should expand. You start hoping the next busy season saves the year.</p>
+  <p class="emphasis">But hope is not a sales system.</p>
+  <p>The buyers didn't disappear. They're still online. They're still shopping. They're still looking at units. They're still trying to decide who to buy from. They're just choosing another dealership before you ever get the chance to sell them.</p>
+
+  <p>That's the problem. Most dealership owners don't lose sales because people don't want powersports vehicles. They lose sales because the buying process is too hard.</p>
+  <p>The customer has questions. But the website doesn't answer them. They want to see inventory. But it's not clear what's available. They want to understand pricing. But they can't find it. They want to know if they can afford it. But there's no clear monthly payment path.</p>
+  <p>They're interested enough to shop… but not confident enough to reach out. So they leave. And once they leave, you don't get a second chance unless you have a system that brings them back.</p>
+
+  <p>That's why most dealership owners try to fix the wrong problem. They think they need more traffic. More ads. More posts. More clicks. More people seeing their name.</p>
+  <p class="emphasis">But more traffic doesn't fix a broken online showroom. It just sends more buyers into the same leaking system.</p>
+
+  <p>Imagine your dealership is a bucket. Every buyer in your market is water being poured into that bucket. Right now, most stores are trying to pour more and more water in… but the bucket has holes in it.</p>
+  <p>Buyers visit your website and leave. They look for inventory and leave. They look for pricing and leave. They look for monthly payment options and leave. They try to compare models and get confused. They get close to reaching out and never do.</p>
+  <p>So no matter how much traffic you pour in, it never fills up the way it should. That's why sales feel random. That's why one month is good and the next month is dead.</p>
+  <p>It's not because demand isn't there. It's because your system isn't capturing it. And until those leaks are fixed, no amount of ads, traffic, boosted posts, or seasonal promos will make your sales predictable.</p>
+
+  <p class="emphasis">That's exactly why we work differently.</p>
+  <p>We don't just run ads and hope for the best. First, we fix the holes. We go through your entire online showroom — your website, your inventory presentation, your pricing clarity, your lead flow, your follow up, your positioning, and your trust — and we identify exactly where buyers are slipping through.</p>
+  <p>Then, once the system is solid, we pour fuel on it. We put your dealership in front of 10,000+ local buyers every month. Not random clicks. Not vanity traffic. Real people in your market who need to see your store before they buy from someone else.</p>
+  <p>Then we retarget them so they don't forget you. We bring them back after they leave. We keep your dealership in front of them while they're still deciding. And we make it easier for them to take the next step before they end up buying from your competitor.</p>
+  <p>Now, instead of pouring traffic into a leaking bucket… you're filling a system that actually holds. That's when sales stop feeling random and start becoming predictable.</p>
+
+  <p>If you want to see exactly where your dealership is losing sales right now, apply for a <strong>Free Dealership Growth Audit</strong>.</p>
+  <p>We'll walk through your entire online presence and show you:</p>
+  <ul>
+    <li>Where buyers are leaving</li>
+    <li>Why your online showroom is costing you sales</li>
+    <li>What's making it hard for customers to shop</li>
+    <li>Where your competitors are winning the sale</li>
+    <li>What needs to be fixed to stop losing customers online</li>
+  </ul>
+  <p>If you're a fit, we'll show you exactly how we can help. If not, you'll still leave with clarity on what's costing you sales. No guesswork. No fluff. Just clarity.</p>
+  <p>Because right now, there are people in your market shopping for a unit. And every week you wait, more of them are leaving your site and buying somewhere else.</p>
+  <p class="emphasis">Apply now.</p>
+
+  <p class="signoff">To predictable dealership sales,<br>Alexander Bloomfield</p>
+
+  <p class="ps"><strong>PS</strong> — Don't apply unless you run an established powersports dealership with real inventory, a real showroom, and a serious desire to stop losing sales online. This isn't for everyone.</p>
+</article>
+
+<section class="bottom-form-wrap" id="apply">
+  <h2>Fill Out This Tiny Application</h2>
+  <p class="hero-form-note">Then book your call on the next page</p>
+
+  <form class="app-form" id="form-bottom" onsubmit="return handlePreviewSubmit(event)">
+    <div class="form-group">
+      <label for="first-bottom">First Name</label>
+      <input type="text" id="first-bottom" name="first_name" placeholder="First name" required>
+    </div>
+    <div class="form-group">
+      <label for="phone-bottom">Phone *</label>
+      <input type="tel" id="phone-bottom" name="phone" placeholder="(555) 555-5555" required>
+    </div>
+    <div class="form-group">
+      <label for="email-bottom">Email *</label>
+      <input type="email" id="email-bottom" name="email" placeholder="you@dealership.com" required>
+    </div>
+    <div class="form-group">
+      <label for="about-bottom">Tell us about yourself</label>
+      <textarea id="about-bottom" name="about" placeholder="Dealership name, brands you carry, market area…"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="role-bottom">I am..</label>
+      <select id="role-bottom" name="role">
+        <option value="">Select one…</option>
+        <option>Dealership owner</option>
+        <option>General manager</option>
+        <option>Marketing manager</option>
+        <option>Other</option>
+      </select>
+    </div>
+    <button type="submit" class="btn-submit">Book My Call</button>
+  </form>
+</section>
+
+<footer class="site-footer">
+  <p>Copyright 2026 | Motorsports Launch LLC</p>
+  <p><a href="tel:2484871082">+1 (248) 487-1082</a></p>
+  <div class="footer-links">
+    <a href="#">Terms Of Service</a>
+    <span>|</span>
+    <a href="#">Privacy Policy</a>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <span>Grow Your Dealership</span>
+  <a href="#apply">Get My Audit</a>
+</div>
+
+<script>
+function handlePreviewSubmit(e) {
+  e.preventDefault();
+  alert('Preview only — form is not connected. On the live site this submits and routes to booking.');
+  return false;
+}
+</script>
+</body>
+</html>
