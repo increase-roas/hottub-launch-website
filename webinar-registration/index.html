@@ -11,7 +11,7 @@
    • Set the webinar date/time in TWO places: the visible date text AND the JS target (search "TARGET DATE")
    • Swap the hosts photo (.hosts-media) for a REAL photo of you/your team in a hot tub showroom
    • Swap the 3 logo placeholders + testimonials for REAL client logos and REAL quotes (never fabricate — FTC + trust)
-   • Wire the registration modal form to GHL; on register, redirect to your confirmation page
+   • Wire the registration modal form to GHL (embedded); on register, redirect to webinar-confirmation.html in GHL form settings
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,11 +129,6 @@
   .modal{background:var(--dark-2);border:1px solid #2a2622;border-radius:18px;max-width:440px;width:100%;padding:clamp(1.6rem,4vw,2.2rem);box-shadow:0 30px 80px rgba(0,0,0,.6);position:relative}
   .modal h3{font-family:'Montserrat';font-weight:900;font-size:1.5rem;color:#fff;text-transform:uppercase;text-align:center;margin-bottom:.4rem;line-height:1.05}
   .modal .ms{text-align:center;color:var(--muted-light);font-size:.95rem;margin-bottom:1.4rem}
-  .modal .fld{margin-bottom:.85rem}
-  .modal label{display:block;font-family:'Montserrat';font-weight:700;font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:#fff;margin-bottom:.35rem}
-  .modal input{width:100%;padding:.9em 1em;border:1.5px solid #33302b;border-radius:8px;font-family:'Manrope';font-size:1rem;color:#fff;background:#0e0c0b}
-  .modal input:focus{outline:none;border-color:var(--red)}
-  .modal .cta{font-size:1.1rem;margin-top:.5rem}
   .modal .close{position:absolute;top:.9rem;right:1rem;background:none;border:0;color:var(--muted);font-size:1.6rem;cursor:pointer;line-height:1}
 
   @media (max-width:520px){
@@ -286,12 +281,23 @@
     <button class="close" id="closeModal" aria-label="Close">×</button>
     <h3>Save Your Seat</h3>
     <div class="ms">Tuesday, July 7th @ 6:00 PM ET · Limited to 100</div>
-    <form id="regForm">
-      <div class="fld"><label>First Name</label><input type="text" name="first" placeholder="First name" required></div>
-      <div class="fld"><label>Email</label><input type="email" name="email" placeholder="you@yourstore.com" required></div>
-      <div class="fld"><label>Phone</label><input type="tel" name="phone" placeholder="+1 (555) 000-0000" required></div>
-      <button class="cta" type="submit">Register for Free</button>
-    </form>
+    <iframe
+      src="https://api.leadconnectorhq.com/widget/form/BgIBfWqPG6s5MUQOR0Eb"
+      style="width:100%;height:100%;border:none;border-radius:3px"
+      id="inline-BgIBfWqPG6s5MUQOR0Eb"
+      data-layout="{'id':'INLINE'}"
+      data-trigger-type="alwaysShow"
+      data-trigger-value=""
+      data-activation-type="alwaysActivated"
+      data-activation-value=""
+      data-deactivation-type="neverDeactivate"
+      data-deactivation-value=""
+      data-form-name="WEBINAR OPT IN (Hot Tub Launch)"
+      data-height="446"
+      data-layout-iframe-id="inline-BgIBfWqPG6s5MUQOR0Eb"
+      data-form-id="BgIBfWqPG6s5MUQOR0Eb"
+      title="WEBINAR OPT IN (Hot Tub Launch)">
+    </iframe>
   </div>
 </div>
 
@@ -315,11 +321,7 @@
   document.querySelectorAll('.register').forEach(function(b){b.addEventListener('click',function(){overlay.classList.add('open')})});
   document.getElementById('closeModal').addEventListener('click',function(){overlay.classList.remove('open')});
   overlay.addEventListener('click',function(e){if(e.target===overlay)overlay.classList.remove('open')});
-  /* Connect this form to GHL (webinar registration), then redirect to your confirmation page */
-  document.getElementById('regForm').addEventListener('submit',function(e){
-    e.preventDefault();
-    window.location.href = 'webinar-confirmation.html';
-  });
 </script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>

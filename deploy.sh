@@ -11,7 +11,7 @@ if ! npx wrangler whoami >/dev/null 2>&1; then
 fi
 
 echo "Deploying to Cloudflare Pages ($PROJECT)..."
-npx wrangler pages deploy . --project-name="$PROJECT" --commit-dirty=true
+npx wrangler pages deploy . --project-name="$PROJECT" --branch=main --commit-dirty=true
 
 echo ""
 echo "Next: Cloudflare Dashboard → Workers & Pages → $PROJECT → Custom domains"

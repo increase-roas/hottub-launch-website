@@ -11,7 +11,7 @@
    • Trust bar: real number in [[ ADD # ]] · swap avatar circles for real store-owner photos
    • Signature: your name in [[ Your Name ]]
    • Store name: real client name in [[ Store name ]] (or keep anonymized)
-   • Form: connect to GHL, success redirect → booking.html
+   • Form: GHL embed in form card; set success redirect → https://hottublaunch.com/case-study/booking.html
    • The 49 / 11-day numbers are your real result — keep the case study contents real (FTC + trust)
 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -72,17 +72,6 @@
   .formband{background:var(--block);padding:1.6rem 0 2.2rem;border-bottom:1px solid var(--line)}
   .form-card{background:#fff;border:1px solid var(--line);border-radius:12px;padding:clamp(1.4rem,4vw,2rem);max-width:520px;margin:0 auto;box-shadow:0 16px 40px rgba(20,15,10,.06)}
   .form-card .ft{text-align:center;font-family:'Montserrat';font-weight:900;font-size:1.15rem;text-transform:uppercase;color:var(--ink);margin-bottom:1.3rem;letter-spacing:-.01em}
-  .field{margin-bottom:.9rem}
-  .field label{display:block;font-family:'Montserrat';font-weight:700;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);margin-bottom:.35rem}
-  .field label .req{color:var(--red)}
-  .field input,.field select{width:100%;padding:.85em 1em;border:1.5px solid var(--line);border-radius:7px;font-family:'Manrope';font-size:1rem;color:var(--ink);background:#fff;transition:border-color .15s}
-  .field input:focus,.field select:focus{outline:none;border-color:var(--red)}
-  .field.phone{display:flex;gap:.5rem}
-  .field.phone .flag{flex:none;display:flex;align-items:center;padding:0 .7em;border:1.5px solid var(--line);border-radius:7px;font-size:.85rem;color:var(--muted)}
-  .field select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23857E76' stroke-width='1.6' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 1em center}
-  .captcha{display:flex;align-items:center;gap:.7rem;background:#f7f7f7;border:1px solid #e2ddd4;border-radius:6px;padding:.7rem .9rem;margin:.4rem 0 1rem;font-size:.8rem;color:var(--muted)}
-  .captcha .box{width:22px;height:22px;border:2px solid #c5c0b6;border-radius:4px;flex:none}
-  .captcha .rc{margin-left:auto;font-size:.62rem;text-align:right;line-height:1.2;color:#b7ada3}
 
   /* content sections */
   .sec{padding:clamp(2.2rem,5vw,3.4rem) 0}
@@ -107,7 +96,7 @@
   .logo .w2{font-family:'Montserrat';font-weight:700;font-size:.72rem;letter-spacing:.42em;color:var(--red);text-transform:uppercase;display:block;margin-top:2px}
   .foot-legal{color:rgba(255,255,255,.42);font-size:.74rem;max-width:64ch;margin:1.4rem auto 0;line-height:1.65}
 
-  @media (max-width:480px){.field.phone{flex-direction:column}.rc-num{font-size:4.4rem}}
+  @media (max-width:480px){.rc-num{font-size:4.4rem}}
 </style>
 </head>
 <body>
@@ -162,25 +151,23 @@
   <div class="wrap">
     <div class="form-card" id="optin">
       <div class="ft">Send me the case study</div>
-      <form id="optinForm">
-        <div class="field"><label>First Name <span class="req">*</span></label><input type="text" name="first" placeholder="First Name" required></div>
-        <div class="field"><label>Last Name <span class="req">*</span></label><input type="text" name="last" placeholder="Last Name" required></div>
-        <div class="field"><label>Email <span class="req">*</span></label><input type="email" name="email" placeholder="you@yourstore.com" required></div>
-        <div class="field"><label>Mobile Phone Number <span class="req">*</span></label>
-          <div class="phone" style="display:flex;gap:.5rem"><span class="flag">🇺🇸 ▾</span><input type="tel" name="phone" placeholder="+1 (555) 000-0000" required></div>
-        </div>
-        <div class="field"><label>Tell Us About Yourself <span class="req">*</span></label>
-          <select name="role" required>
-            <option value="" disabled selected>I am…</option>
-            <option>I own a hot tub store</option>
-            <option>I manage a hot tub store</option>
-            <option>I'm opening a hot tub store</option>
-            <option>Other</option>
-          </select>
-        </div>
-        <div class="captcha"><span class="box"></span>I'm not a robot<span class="rc">protected by<br>reCAPTCHA</span></div>
-        <button class="btn" type="submit">Send Me the Case Study</button>
-      </form>
+      <iframe
+        src="https://api.leadconnectorhq.com/widget/form/wbWIhRkPmCt4FJ0bfiIX"
+        style="width:100%;height:100%;border:none;border-radius:3px"
+        id="inline-wbWIhRkPmCt4FJ0bfiIX"
+        data-layout="{'id':'INLINE'}"
+        data-trigger-type="alwaysShow"
+        data-trigger-value=""
+        data-activation-type="alwaysActivated"
+        data-activation-value=""
+        data-deactivation-type="neverDeactivate"
+        data-deactivation-value=""
+        data-form-name="CASESTUDY PDF OPT IN (Hot Tub Launch)"
+        data-height="478"
+        data-layout-iframe-id="inline-wbWIhRkPmCt4FJ0bfiIX"
+        data-form-id="wbWIhRkPmCt4FJ0bfiIX"
+        title="CASESTUDY PDF OPT IN (Hot Tub Launch)">
+      </iframe>
     </div>
   </div>
 </section>
@@ -244,12 +231,6 @@
   </div>
 </footer>
 
-<script>
-  // Connect this form to GHL, then set the success redirect to booking.html
-  document.getElementById('optinForm').addEventListener('submit', function(e){
-    e.preventDefault();
-    window.location.href = 'booking.html';
-  });
-</script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 </html>
